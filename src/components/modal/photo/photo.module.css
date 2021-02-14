@@ -1,0 +1,20 @@
+.details {
+  z-index: -1;
+  position: relative;
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0 8px 16px rgb(0 0 0 / 15%);
+  min-width: 0;
+  margin: auto;
+  padding: 16px;
+}
+
+.image_wrapper {
+  min-width: 500px;
+  max-width: calc((100vh - 175px) * 1.5);
+  margin: auto;
+}
+
+.image {
+  width: 100%;
+}

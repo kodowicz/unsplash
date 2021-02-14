@@ -1,24 +1,32 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, useLocation } from 'react-router-dom';
 
-import Home from './Home';
-// import Photos from './Photos';
-import PhotosList from '../components/PhotosList';
-import Details from '../components/Details';
-// import NotFound from './404';
+import Explore from '../components/explore/Explore';
+import Gallery from '../components/gallery/Gallery';
+import Modal from '../components/modal/Modal';
+import NotFound from './404';
 
-function App () {
+export default function App() {
   return (
     <BrowserRouter>
-      <Switch>
-        <Route path='/' exact component={Home} />
-        <Route path='/photos/:slug' component={PhotosList} />
-        <Route path='/photos/details/:slug' component={Details} />
-      </Switch>
+      <ModalSwitch />
     </BrowserRouter>
-  )
-};
-// <Route path='/photos/:slug' component={Photos} />
-// <Route path='*' component={NotFound} />
+  );
+}
 
-export default App;
+function ModalSwitch() {
+  let location = useLocation();
+  let background = location.state && location.state.background;
+
+  return (
+    <div>
+      <Switch location={background || location}>
+        <Route exact path='/' component={Explore} />
+        <Route path='/s/photos/:id' component={Gallery} />
+        <Route path='*' component={NotFound} />
+      </Switch>
+
+      {background && <Route path='/photos/:id' component={Modal} />}
+    </div>
+  );
+}

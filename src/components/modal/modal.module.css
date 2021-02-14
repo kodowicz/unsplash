@@ -1,0 +1,27 @@
+.modal {
+  background-color: rgba(0,0,0,.6);
+  cursor: zoom-out;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 3;
+  padding: 16px;
+
+}
+@media(min-width: 768px) {
+  .modal {
+    padding: 32px 70px
+  }
+}
+
+.close_button {
+  border: none;
+  background: none;
+  position: fixed;
+  color: #fff;
+  top: 8px;
+  left: 8px;
+  fill: currentColor;
+}

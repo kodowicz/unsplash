@@ -1,0 +1,58 @@
+.wrapper {
+  width: 100%;
+  padding: 16px;
+  margin-top: 20px;
+  margin-bottom: 60px;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.topics_wrapper {
+  display: inline-flex;
+}
+
+.topic {
+  width: 140px;
+  border-width: 1px;
+  text-align: center;
+  border-color: #d1d1d1;
+  text-transform: capitalize;
+  transition: border-color .1s ease-in-out;
+  border-radius: 5px;
+  border-style: solid;
+  overflow: hidden;
+  margin-left: 8px;
+}
+
+.topic:hover {
+  border-color: #111;
+}
+
+.title {
+  width: 140px;
+  padding: 13px;
+  font-size: 14px;
+  line-height: 1;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #767676;
+  box-sizing: border-box;
+  transition: color .1s ease-in-out,
+}
+
+.title:hover {
+  color: #111;
+}
+
+.blur {
+  position: absolute;
+  background: #fff;
+  right: -2px;
+  top: 0;
+  width: 15px;
+  height: 100%;
+  box-shadow: -5px 0px 10px rgb(255,255,255);
+}
