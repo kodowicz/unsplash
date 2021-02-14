@@ -19,10 +19,12 @@ function Search() {
 
   useEffect(
     () => {
-      fetch(`https://unsplash.com/nautocomplete/${value}`)
-        .then(res => res.json())
-        .then(data => console.log(data))
-        .catch(err => console.log(err))
+      // tu powinno być zapytanie do bazy o sugestie, jednak nie byłam
+      // w stanie znaleźć takiego endpoint w api Unsplash
+      // dlatego też posiłkuję się sztuczną sugestią w postaci tablicu 'basicSuggestions'
+      // fetch(`https://unsplash.com/nautocomplete/${value}`)
+      //   .then(res => res.json())
+      //   .then(data => setSuggestions(data))
     },
     [value]
   );
@@ -66,23 +68,48 @@ function Search() {
     event.preventDefault();
     const suggestion = suggestions[option];
     const query = id || suggestion || value;
-    console.log(query);
+
     if (!query) return;
     history.push(`/s/photos/${query}/`)
   };
 
   return (
     <form className={styles.form} onSubmit={searchPhotos}>
-      <button className={styles.search} title="Search Unsplash" type="submit">
+      <button
+        className={styles.search}
+        title="Search Unsplash"
+        type="submit"
+      >
         <SearchSvg className={styles.search__svg} />
       </button>
-      <div className={styles.combobox} role="combobox" aria-haspopup="listbox" aria-owns="autocomplete-search" aria-expanded="false">
-        <input className={styles.input} onChange={changeQuery} value={value} ref={inputRef} type="text" autoComplete="off" aria-autocomplete="list"
-        aria-controls="autocomplete-search" name="searchKeyword"
-        placeholder="Search free high-resolution photos" required
-        title="Search Unsplash" autoCapitalize="none" spellCheck="false" />
+      <div
+        className={styles.combobox}
+        role="combobox"
+        aria-haspopup="listbox"
+        aria-owns="autocomplete-search"
+        aria-expanded={value.length >= 3}>
+        <input
+          className={styles.input}
+          onChange={changeQuery}
+          value={value}
+          ref={inputRef}
+          type="text"
+          autoComplete="off"
+          aria-autocomplete="list"
+          aria-controls="autocomplete-search"
+          name="searchKeyword"
+          placeholder="Search free high-resolution photos"
+          title="Search Unsplash"
+          autoCapitalize="none"
+          spellCheck="false"
+          required
+        />
         { value.length >= 3 &&
-          <div className={styles.listbox} id="autocomplete-search" role="listbox">
+          <div
+            className={styles.listbox}
+            id="autocomplete-search"
+            role="listbox"
+          >
             <ul className={styles.listbox__list} role="listbox">
               { suggestions.length ?
                 suggestions.map((suggestion, index) => {

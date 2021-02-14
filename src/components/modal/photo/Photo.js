@@ -16,10 +16,14 @@ export default function ImageDetails({ details }) {
 
 function ImageInfo ({ location, description }) {
   return (
-    <div>
-      <p>{location.name}</p>
-      <button>share</button>
-      <button>info</button>
+    <div className={styles.info_wrapper}>
+      <div className={styles.location}>
+        <span>{location.name}</span>
+      </div>
+      <div className={styles.buttons_wrapper}>
+        <button className={styles.button}>share</button>
+        <button className={styles.button}>info</button>
+      </div>
     </div>
   );
 }
