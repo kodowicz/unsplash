@@ -26,10 +26,10 @@
   line-height: 1.4;
   max-width: 100%;
   cursor: pointer;
-}
 
-.listbox__item[aria-selected="true"] {
-  background: #eee
+  &[aria-selected="true"] {
+    background: #eee
+  }
 }
 
 .form {
@@ -40,12 +40,13 @@
   display: flex;
   transition: all .1s ease-in-out;
   margin-top: 20px;
+
+  &:focus-within {
+    background: #fff;
+    box-shadow: 0 0 0 5px rgba(0 0 0 / 20%)
+  }
 }
 
-.form:focus-within {
-  background: #fff;
-  box-shadow: 0 0 0 5px rgba(0 0 0 / 20%)
-}
 
 .search {
   cursor: pointer;
@@ -56,17 +57,17 @@
   background: none;
   border: none;
   text-align: inherit;
-}
 
-.search__svg {
-  width: 24px;
-  height: 24px;
-  padding: 0 14px;
-  fill: #767676;
-  transition: fill .1s ease-in-out;
+  svg {
+    width: 24px;
+    height: 24px;
+    padding: 0 14px;
+    fill: #767676;
+    transition: fill .1s ease-in-out;
 
-  &:hover {
-    fill: #000000;
+    &:hover {
+      fill: #000000;
+    }
   }
 }
 
@@ -97,21 +98,21 @@
   background-color: initial;
   cursor: pointer;
   color: inherit;
-}
 
-.reset[hidden] {
-  display: none
-}
+  &[hidden] {
+    display: none
+  }
+  
+  svg {
+    width: 20px;
+    height: 20px;
+    padding-left: 14px;
+    padding-right: 14px;
+    fill: #767676;
+    transition: fill .1s ease-in-out;
 
-.reset__svg {
-  width: 20px;
-  height: 20px;
-  padding-left: 14px;
-  padding-right: 14px;
-  fill: #767676;
-  transition: fill .1s ease-in-out;
-
-  &:hover {
-    fill: #000000;
+    &:hover {
+      fill: #000000;
+    }
   }
 }

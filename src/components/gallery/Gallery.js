@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useRef, useLayoutEffect  } from 'react';
-import { Link, useParams, useLocation } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { useParams, useLocation } from 'react-router-dom';
 import unsplash from '../../api/index';
 import Photos from './photos/Photos';
 import Topics from './topics/Topics';
-import Search from '../explore/search/Search';
-import styles from './gallery.module.css';
+import Form from '../search/form/Form';
+import styles from './gallery.module.scss';
 
 export default function Gallery() {
   const [ photos, setPhotos ] = useState([]);
@@ -36,7 +36,7 @@ export default function Gallery() {
   return (
     <div>
       <div className={styles.gallery_search}>
-        <Search />
+        <Form />
       </div>
       <h1 className={styles.topic}>{id}</h1>
       <Topics topics={topics} />

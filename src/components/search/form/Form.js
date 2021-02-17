@@ -4,9 +4,9 @@ import unsplash from '../../../api/index';
 import { useKeyPress, useAutoComplete } from '../../../hooks';
 import { ReactComponent as SearchSvg } from '../../../assets/search.svg';
 import { ReactComponent as ResetSvg } from '../../../assets/reset.svg';
-import styles from './search.module.css';
+import styles from './form.module.scss';
 
-function Search() {
+export default function Form() {
   const basicSuggestions = ['islamic', 'islam', 'islamic art', 'island', 'islands', 'islamic articture', 'island wallpapers', 'island in ocean', 'island girl', 'island beach']
   const history = useHistory();
   const inputRef = useRef();
@@ -19,9 +19,6 @@ function Search() {
 
   useEffect(
     () => {
-      // tu powinno być zapytanie do bazy o sugestie, jednak nie byłam
-      // w stanie znaleźć takiego endpoint w api Unsplash
-      // dlatego też posiłkuję się sztuczną sugestią w postaci tablicu 'basicSuggestions'
       // fetch(`https://unsplash.com/nautocomplete/${value}`)
       //   .then(res => res.json())
       //   .then(data => setSuggestions(data))
@@ -146,5 +143,3 @@ function Search() {
     </form>
   )
 }
-
-export default Search;

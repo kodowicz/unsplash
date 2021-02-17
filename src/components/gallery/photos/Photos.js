@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Masonry from 'react-masonry-component';
-import styles from './photos.module.css';
+import styles from './photos.module.scss';
 
 export default function Photos({ photos, location }) {
   const masonryOptions = {
@@ -18,9 +18,8 @@ export default function Photos({ photos, location }) {
             pathname: `/photos/${photo.id}`,
             state: { background: location }
           }}>
-            <div className={styles.image_wrapper}>
+            <div className={styles.image}>
               <img
-                className={styles.image}
                 id={photo.id}
                 src={photo.urls.small}
                 alt={photo.alt_description}
@@ -29,7 +28,7 @@ export default function Photos({ photos, location }) {
           </Link>
           <div className={styles.tags}>
             { photo.tags.map((tag, index) => (
-              <div className={styles.tag_wrapper} key={index}>
+              <div key={index}>
                 <span className={styles.tag}>{tag.title}</span>
               </div>
             ))}

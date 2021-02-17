@@ -8,7 +8,7 @@
   position: relative;
 }
 
-.topics_wrapper {
+.topics {
   display: inline-flex;
 }
 
@@ -23,10 +23,10 @@
   border-style: solid;
   overflow: hidden;
   margin-left: 8px;
-}
 
-.topic:hover {
-  border-color: #111;
+  &:hover {
+    border-color: #111;
+  }
 }
 
 .title {
@@ -40,12 +40,13 @@
   white-space: nowrap;
   color: #767676;
   box-sizing: border-box;
-  transition: color .1s ease-in-out,
+  transition: color .1s ease-in-out;
+
+  &:hover {
+    color: #111;
+  }
 }
 
-.title:hover {
-  color: #111;
-}
 
 .blur {
   position: absolute;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route, useLocation } from 'react-router-dom';
 
-import Explore from '../components/explore/Explore';
+import Search from '../components/search/Search';
 import Gallery from '../components/gallery/Gallery';
 import Modal from '../components/modal/Modal';
 import NotFound from './404';
@@ -21,7 +21,7 @@ function ModalSwitch() {
   return (
     <div>
       <Switch location={background || location}>
-        <Route exact path='/' component={Explore} />
+        <Route exact path='/unsplash' component={Search} />
         <Route path='/s/photos/:id' component={Gallery} />
         <Route path='*' component={NotFound} />
       </Switch>

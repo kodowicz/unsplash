@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import Search from './search/Search';
-import styles from './explore.module.css';
+import Form from './form/Form';
+import styles from './search.module.scss';
 
-export default function Explore() {
+export default function Search() {
   return (
     <div className={styles.background}>
       <div className={styles.header_wrapper}>
@@ -14,7 +14,7 @@ export default function Explore() {
             {'.'}
           </p>
           <p className={styles.info}>Powered by creators everywhere.</p>
-          <Search />
+          <Form />
         </div>
         <p>Trending: flower, wallpapers, backgrounds, happy, love</p>
       </div>

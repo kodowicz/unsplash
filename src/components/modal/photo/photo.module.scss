@@ -1,0 +1,14 @@
+.wrapper {
+  z-index: -1;
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0 8px 16px rgb(0 0 0 / 15%);
+  min-width: 0;
+  margin: auto;
+  padding: 16px 0;
+  cursor: auto;
+
+  @media(min-width: 768px) {
+    padding: 16px;
+  }
+}
