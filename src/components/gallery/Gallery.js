@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useLocation } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import unsplash from '../../api/index';
 import Photos from './photos/Photos';
 import Topics from './topics/Topics';
@@ -10,7 +10,6 @@ export default function Gallery() {
   const [ photos, setPhotos ] = useState([]);
   const [ topics, setTopics ] = useState([]);
   const { id } = useParams();
-  const location = useLocation();
 
   useEffect(
     () => {
@@ -38,9 +37,11 @@ export default function Gallery() {
       <div className={styles.gallery_search}>
         <Form />
       </div>
-      <h1 className={styles.topic}>{id}</h1>
-      <Topics topics={topics} />
-      <Photos photos={photos} location={location} />
+      <div className={styles.topic_wrapper}>
+        <h1 className={styles.topic}>{id}</h1>
+        <Topics topics={topics} />
+      </div>
+      <Photos photos={photos} />
     </div>
   );
 }

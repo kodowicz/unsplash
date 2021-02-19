@@ -1,38 +1,23 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useRef, useEffect, useState } from 'react';
 import Masonry from 'react-masonry-component';
+import Tags from './tags/Tags';
+import Image from './image/Image';
 import styles from './photos.module.scss';
 
-export default function Photos({ photos, location }) {
+export default function Photos({ photos }) {
   const masonryOptions = {
     transitionDuration: 0
   }
 
   return (
-    <Masonry className={styles.wrapper}
+    <Masonry
+      className={styles.wrapper}
       options={masonryOptions}
     >
       { photos.map(photo => (
         <li className={styles.item} key={photo.id}>
-          <Link to={{
-            pathname: `/photos/${photo.id}`,
-            state: { background: location }
-          }}>
-            <div className={styles.image}>
-              <img
-                id={photo.id}
-                src={photo.urls.small}
-                alt={photo.alt_description}
-              />
-            </div>
-          </Link>
-          <div className={styles.tags}>
-            { photo.tags.map((tag, index) => (
-              <div key={index}>
-                <span className={styles.tag}>{tag.title}</span>
-              </div>
-            ))}
-          </div>
+          <Image photo={photo} />
+          <Tags tags={photo.tags} />
         </li>
       ))}
     </Masonry>

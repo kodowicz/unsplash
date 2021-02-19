@@ -52,3 +52,64 @@ export function useAutoComplete(value, strings) {
     return [[]];
   }
 }
+
+export function useWindowResize() {
+  const [ windowSize, setWindowSize ] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight
+  });
+
+  useEffect(() => {
+    function handleResize() {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    }
+
+    window.addEventListener('resize', handleResize);
+
+    handleResize();
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  return windowSize;
+}
+
+export function useThumbnailSize(ref, image) {
+  const windowSize = useWindowResize();
+  const [ size, setSize ] = useState();
+
+  useEffect(
+    () => {
+      function getThumbnailSize(image) {
+        const container = ref.current.getBoundingClientRect();
+        const width = container.width;
+        const height = (width * image.height) / image.width;
+
+        setSize({ width, height })
+      };
+
+      getThumbnailSize(image);
+    },
+    [ref, image, windowSize]
+  );
+
+
+  return size;
+};
+
+export function useEllipsisActive(ref) {
+  const [ isActive, setActive ] = useState(false);
+
+  useEffect(() => {
+    function getEllipsis(ref) {
+      const isActive = ref.current.offsetWidth < ref.current.scrollWidth;
+      setActive(isActive);
+    }
+    getEllipsis(ref);
+  }, [ref]);
+
+  return isActive;
+};

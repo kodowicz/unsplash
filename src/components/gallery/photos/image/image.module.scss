@@ -1,0 +1,13 @@
+.figure {
+  width: calc(100% - 24px);
+  height: 300px;
+  margin: 12px;
+  position: relative;
+}
+
+.image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: zoom-in;
+}

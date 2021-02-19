@@ -1,6 +1,15 @@
+.topic_wrapper {
+  padding: 24px;
+
+  @media (min-width: 768px) {
+    max-width: 1296px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
 .topic {
   margin-bottom: 16px;
-  margin-left: 24px;
   font-size: 28px;
   line-height: 1.25;
   font-weight: 700;
