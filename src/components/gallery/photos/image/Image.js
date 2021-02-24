@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Blurhash } from 'react-blurhash';
-import { useThumbnailSize } from '../../../../hooks';
+import { useThumbnailSize } from '../../../../hooks/';
 import styles from './image.module.scss';
 
 export default function Image({ photo }) {

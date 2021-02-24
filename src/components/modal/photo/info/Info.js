@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { useEllipsisActive } from '../../../../hooks';
+import { useEllipsisActive } from '../../../../hooks/';
 import { ReactComponent as LocationSvg } from '../../../../assets/location.svg';
 import { ReactComponent as ShareSvg } from '../../../../assets/share.svg';
 import { ReactComponent as InformationSvg } from '../../../../assets/information.svg';

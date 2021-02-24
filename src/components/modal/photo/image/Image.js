@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { Blurhash } from 'react-blurhash';
-import { useImageSize } from '../../../../hooks';
+import { useImageSize } from '../../../../hooks/';
 import styles from './image.module.scss';
 
 export default function Image({ details }) {

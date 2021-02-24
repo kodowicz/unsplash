@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useHistory } from 'react-router';
 import unsplash from '../../../api/index';
-import { useKeyPress, useAutoComplete } from '../../../hooks';
+import { useKeyPress, useAutoComplete } from '../../../hooks/';
 import { ReactComponent as SearchSvg } from '../../../assets/search.svg';
 import { ReactComponent as ResetSvg } from '../../../assets/reset.svg';
 import styles from './form.module.scss';
