@@ -1,35 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import unsplash from '../../api/index';
+import { useScroll, useFetchPhotos, useFetchTopics } from '../../hooks/';
 import Photos from './photos/Photos';
 import Topics from './topics/Topics';
 import Form from '../search/form/Form';
 import styles from './gallery.module.scss';
 
 export default function Gallery() {
-  const [ photos, setPhotos ] = useState([]);
-  const [ topics, setTopics ] = useState([]);
+  const [ perPage, setPerPage ] = useState(10);
   const { id } = useParams();
+  const photos = useFetchPhotos(id, perPage);
+  const topics = useFetchTopics();
+  const bottomPos = useScroll();
 
   useEffect(
     () => {
-      unsplash.search.getPhotos({
-        query: id
-      }).then(({ response }) => setPhotos(response.results))
+      if (bottomPos) setPerPage(perPage + 10)
     },
-    [id]
-  );
-
-  useEffect(
-    () => {
-      unsplash.search.getPhotos({
-        query: id
-      }).then(({ response }) => setPhotos(response.results))
-      unsplash.topics.list({
-        page: 1
-      }).then(({ response }) => setTopics(response.results))
-    },
-    []
+    [bottomPos]
   );
 
   return (
