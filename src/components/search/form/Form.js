@@ -1,34 +1,34 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { useHistory } from 'react-router';
-import unsplash from '../../../api/index';
-import { useKeyPress, useAutoComplete } from '../../../hooks/';
+import { useHistory, useParams } from 'react-router';
+import { useKeyPress, useFetchSuggestions, useOnClickOutside } from '../../../hooks/';
 import { ReactComponent as SearchSvg } from '../../../assets/search.svg';
 import { ReactComponent as ResetSvg } from '../../../assets/reset.svg';
 import styles from './form.module.scss';
 
 export default function Form() {
-  const basicSuggestions = ['islamic', 'islam', 'islamic art', 'island', 'islands', 'islamic articture', 'island wallpapers', 'island in ocean', 'island girl', 'island beach']
+  const { id } = useParams();
   const history = useHistory();
   const inputRef = useRef();
-  const enterPress = useKeyPress('Enter');
+  const listRef = useRef();
+  const [ option, setOption ] = useState(-1);
+  const [ value, setValue ] = useState('');
+  const [ hasFocus, setFocus ] = useState(false);
+  const suggestions = useFetchSuggestions(value);
   const arrowDownPress = useKeyPress('ArrowDown');
   const arrowUpPress = useKeyPress('ArrowUp');
-  const [ value, setValue ] = useState('');
-  const [ option, setOption ] = useState(-1);
-  const [ suggestions ] = useAutoComplete(value, basicSuggestions);
 
-  useEffect(
+  useOnClickOutside(
     () => {
-      // fetch(`https://unsplash.com/nautocomplete/${value}`)
-      //   .then(res => res.json())
-      //   .then(data => setSuggestions(data))
+      setFocus(false)
     },
-    [value]
+    [listRef, inputRef]
   );
 
+  useEffect(() => setValue(''), [id]);
+
   useEffect(
     () => {
-      const maxOption = suggestions.length - 1;
+      const maxOption = suggestions?.length - 1;
       const isFocus = document.activeElement === inputRef.current;
 
       if (isFocus && value.length >= 3) {
@@ -63,83 +63,114 @@ export default function Form() {
 
   function searchPhotos(event, id) {
     event.preventDefault();
-    const suggestion = suggestions[option];
+    const suggestion = suggestions && suggestions[option]?.query;
     const query = id || suggestion || value;
 
     if (!query) return;
     history.push(`/s/photos/${query}/`)
-  };
+  }
+
+  const searchButton = (
+    <button
+      className={styles.search}
+      title='Search Unsplash'
+      type='submit'
+      onClick={searchPhotos}
+    >
+      <SearchSvg />
+    </button>
+  )
+
+  const resetButton = (
+    <button
+      hidden={!value}
+      className={styles.reset}
+      onClick={resetQuery}
+    >
+      <ResetSvg />
+    </button>
+  )
+
+  const visibleSuggestions = hasFocus && suggestions && value.length >= 3;
+  let listItems = <></>;
+
+  if (visibleSuggestions) {
+    if (suggestions.length) {
+      listItems = suggestions.map((suggestion, index) => (
+        <li
+          key={index}
+          className={styles.item}
+          aria-selected={option === index}
+          id={`autocomplete-search--item-${index}`}
+          role='option'
+          onMouseEnter={() => setOption(index)}
+          onClick={(event) => searchPhotos(event, suggestion.query)}
+        >
+          <div>{suggestion.query}</div>
+        </li>
+      ));
+
+    } else {
+      listItems = (
+        <li
+          className={styles.item}
+          role='option'
+          aria-selected='false'
+          id='autocomplete-search--item-0'
+        >
+          <div>no matching photos</div>
+        </li>
+      )
+    }
+  }
+
+  let listbox = (
+    <div
+      ref={listRef}
+      className={`${styles.listbox} ${!visibleSuggestions && styles.hidden}`}
+      role='listbox'
+      id='autocomplete-search'
+    >
+      <ul className={styles.list} role='listbox'>
+        {listItems}
+      </ul>
+    </div>
+  );
 
   return (
-    <form className={styles.form} onSubmit={searchPhotos}>
-      <button
-        className={styles.search}
-        title="Search Unsplash"
-        type="submit"
-      >
-        <SearchSvg className={styles.search__svg} />
-      </button>
+    <form
+      className={styles.form}
+      onSubmit={searchPhotos}
+    >
+      {searchButton}
       <div
         className={styles.combobox}
-        role="combobox"
-        aria-haspopup="listbox"
-        aria-owns="autocomplete-search"
-        aria-expanded={value.length >= 3}>
+        aria-expanded={visibleSuggestions}
+        role='combobox'
+        aria-haspopup='listbox'
+        aria-owns='autocomplete-search'
+      >
         <input
-          className={styles.input}
-          onChange={changeQuery}
           value={value}
           ref={inputRef}
-          type="text"
-          autoComplete="off"
-          aria-autocomplete="list"
-          aria-controls="autocomplete-search"
-          name="searchKeyword"
-          placeholder="Search free high-resolution photos"
-          title="Search Unsplash"
-          autoCapitalize="none"
-          spellCheck="false"
+          className={styles.input}
+          aria-activedescendant={option > -1 && `autocomplete-search--item-${option}`}
+          onChange={changeQuery}
+          onFocus={() => setFocus(true)}
+          type='search'
+          autoComplete='off'
+          aria-autocomplete='list'
+          aria-controls='autocomplete-search'
+          name='searchKeyword'
+          placeholder='Search photos'
+          title='Search Unsplash'
+          autoCapitalize='none'
+          spellCheck='false'
           required
         />
-        { value.length >= 3 &&
-          <div
-            className={styles.listbox}
-            id="autocomplete-search"
-            role="listbox"
-          >
-            <ul className={styles.listbox__list} role="listbox">
-              { suggestions.length ?
-                suggestions.map((suggestion, index) => {
-                  return (
-                    <li
-                      key={index}
-                      role="option"
-                      className={styles.listbox__item}
-                      onClick={(event) => searchPhotos(event, suggestion)}
-                      id={`autocomplete-search--item-${index}`}
-                      aria-selected={option === index}
-                      data-suggestion-index={index}>
-                      <div>{suggestion}</div>
-                    </li>
-                  )
-                })
-                :
-                <li
-                  role="option"
-                  className={styles.listbox__item}
-                  id='autocomplete-search--item-0'
-                  aria-selected='false'
-                  data-suggestion-index='0'>
-                  <div>no matching photos</div>
-                </li>
-              }
-            </ul>
-          </div>
-        }
+        {listbox}
       </div>
-      <button className={styles.reset} hidden={!value} onClick={resetQuery}>
-        <ResetSvg className={styles.reset__svg} />
-      </button>
+      {resetButton}
     </form>
   )
 }
