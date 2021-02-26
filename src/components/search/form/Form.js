@@ -16,6 +16,7 @@ export default function Form() {
   const suggestions = useFetchSuggestions(value);
   const arrowDownPress = useKeyPress('ArrowDown');
   const arrowUpPress = useKeyPress('ArrowUp');
+  const addStyles = id ? styles.minor : styles.major;
 
   useOnClickOutside(
     () => {
@@ -72,7 +73,7 @@ export default function Form() {
 
   const searchButton = (
     <button
-      className={styles.search}
+      className={`${styles.search} ${addStyles}`}
       title='Search Unsplash'
       type='submit'
       onClick={searchPhotos}
@@ -84,7 +85,7 @@ export default function Form() {
   const resetButton = (
     <button
       hidden={!value}
-      className={styles.reset}
+      className={`${styles.reset} ${addStyles}`}
       onClick={resetQuery}
     >
       <ResetSvg />
@@ -139,7 +140,7 @@ export default function Form() {
 
   return (
     <form
-      className={styles.form}
+      className={`${styles.form} ${addStyles}`}
       onSubmit={searchPhotos}
     >
       {searchButton}
