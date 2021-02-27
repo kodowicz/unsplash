@@ -1,0 +1,8 @@
+:root {
+  --margin: 12px;
+  --columns-gap: 0;
+
+  @media(min-width: 768px) {
+    --columns-gap: 24px;
+  }
+}

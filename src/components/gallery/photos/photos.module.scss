@@ -1,9 +1,10 @@
 .wrapper {
   padding: 0;
-  margin: 12px;
+  margin: var(--columns-gap);
+  width: 100%;
 
   @media(min-width: 768px) {
-    width: calc(100% - 24px);
+    width: calc(100% - var(--columns-gap));
     max-width: 1320px;
     margin: 0 auto;
   }

@@ -24,6 +24,7 @@ export default function Image({ photo }) {
       >
         { size &&
           <Blurhash
+            className={styles.blurhash}
             hash={photo.blur_hash}
             width={size?.width}
             height={size?.height}
@@ -34,13 +35,8 @@ export default function Image({ photo }) {
           src={photo.urls.small}
           title={photo.alt_description}
           alt={photo.alt_description}
-          style={{
-            width: size?.width,
-            height: size?.height
-          }}
         />
       </div>
-
     </Link>
   );
 }
