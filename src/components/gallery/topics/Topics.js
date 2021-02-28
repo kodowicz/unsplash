@@ -5,9 +5,9 @@ export default function Topics({ topics }) {
   return (
     <div className={styles.wrapper}>
       <div className={styles.topics}>
-        { topics.map(topic => (
+        { topics.map((topic, index) => (
           <div
-            key={topic.id}
+            key={index}
             title={topic.title}
             className={styles.topic}
           >

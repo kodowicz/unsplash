@@ -1,7 +1,7 @@
 import useEllipsisActive from './useEllipsisActive';
 import useFetchPhotos from './useFetchPhotos';
+import useFetchSearched from './useFetchSearched';
 import useFetchSuggestions from './useFetchSuggestions';
-import useFetchTopics from './useFetchTopics';
 import useImageSize from './useImageSize';
 import useKeyPress from './useKeyPress';
 import useOnClickOutside from './useOnClickOutside';
@@ -12,8 +12,8 @@ import useWindowResize from './useWindowResize';
 export {
   useEllipsisActive,
   useFetchPhotos,
+  useFetchSearched,
   useFetchSuggestions,
-  useFetchTopics,
   useImageSize,
   useKeyPress,
   useOnClickOutside,

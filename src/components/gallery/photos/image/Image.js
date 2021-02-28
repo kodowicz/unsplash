@@ -22,7 +22,7 @@ export default function Image({ photo }) {
           height: size?.height
         }}
       >
-        { size &&
+        {(size && photo.blur_hash) &&
           <Blurhash
             className={styles.blurhash}
             hash={photo.blur_hash}

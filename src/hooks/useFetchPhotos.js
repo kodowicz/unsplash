@@ -1,17 +1,23 @@
 import { useState, useEffect } from 'react';
-import unsplash from '../api/index';
+import { INITPAGE, PERPAGE } from '../variables';
 
-export default function useFetchPhotos(query, perPage) {
-  const [ state, setState ] = useState([]);
+export default function useFetchPhotos(query, page) {
+  const [ photos, setPhotos ] = useState([]);
 
   useEffect(
     () => {
-      unsplash.search
-        .getPhotos({ query, perPage })
-        .then(({ response }) => setState(response.results))
+      const endpoint = `https://unsplash.com/napi/search/photos?query=${query}&per_page=${PERPAGE}&page=${page}`
+
+      if (page >= INITPAGE) {
+        fetch(`https://cors-anywhere.herokuapp.com/${endpoint}`)
+          .then(res => res.json())
+          .then(data => {
+            setPhotos(data.results)
+          })
+      }
     },
-    [query, perPage]
+    [page]
   );
 
-  return state;
+  return photos;
 };

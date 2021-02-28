@@ -1,4 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
+import { RATIO } from '../variables';
 
 export default function useScroll() {
   const [ scrollPos, setScrollPos ] = useState();
@@ -6,7 +7,8 @@ export default function useScroll() {
 
   const scrollBottom = useMemo(
     () => {
-      return scrollPos >= docHeight
+      const docHeightRatio = docHeight * RATIO;
+      return scrollPos >= docHeightRatio
     },
     [scrollPos, docHeight]
   );
@@ -19,9 +21,9 @@ export default function useScroll() {
   };
 
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener('scroll', handleScroll);
     };
   });
 
