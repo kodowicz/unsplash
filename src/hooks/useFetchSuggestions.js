@@ -6,9 +6,13 @@ export default function useFetchSuggestions (query) {
   useEffect(
     () => {
       // to break up cors, because autocomplete is not a part of Unsplash API
-      fetch(`https://cors-anywhere.herokuapp.com/https://unsplash.com/nautocomplete/${query}`)
-        .then(res => res.json())
-        .then(data => {console.log(data); setSuggestions(data.autocomplete)})
+      const endpoint = `https://unsplash.com/nautocomplete/${query}`;
+
+      if (query) {
+        fetch(`https://cors-anywhere.herokuapp.com/${endpoint}`)
+          .then(res => res.json())
+          .then(data => setSuggestions(data.autocomplete))
+      }
     },
     [query]
   );

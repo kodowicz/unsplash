@@ -1,3 +1,4 @@
+import useDebounce from './useDebounce';
 import useEllipsisActive from './useEllipsisActive';
 import useFetchPhotos from './useFetchPhotos';
 import useFetchSearched from './useFetchSearched';
@@ -10,6 +11,7 @@ import useThumbnailSize from './useThumbnailSize';
 import useWindowResize from './useWindowResize';
 
 export {
+  useDebounce,
   useEllipsisActive,
   useFetchPhotos,
   useFetchSearched,

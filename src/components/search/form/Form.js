@@ -1,6 +1,11 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useHistory, useParams } from 'react-router';
-import { useKeyPress, useFetchSuggestions, useOnClickOutside } from '../../../hooks/';
+import {
+  useKeyPress,
+  useFetchSuggestions,
+  useOnClickOutside,
+  useDebounce
+} from '../../../hooks/';
 import { ReactComponent as SearchSvg } from '../../../assets/search.svg';
 import { ReactComponent as ResetSvg } from '../../../assets/reset.svg';
 import styles from './form.module.scss';
@@ -13,7 +18,8 @@ export default function Form() {
   const [ option, setOption ] = useState(-1);
   const [ value, setValue ] = useState('');
   const [ hasFocus, setFocus ] = useState(false);
-  const suggestions = useFetchSuggestions(value);
+  const debouncedValue = useDebounce(value, 300);
+  const suggestions = useFetchSuggestions(debouncedValue);
   const arrowDownPress = useKeyPress('ArrowDown');
   const arrowUpPress = useKeyPress('ArrowUp');
   const addStyles = id ? styles.minor : styles.major;
