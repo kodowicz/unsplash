@@ -6,7 +6,7 @@ import useFetchSuggestions from './useFetchSuggestions';
 import useImageSize from './useImageSize';
 import useKeyPress from './useKeyPress';
 import useOnClickOutside from './useOnClickOutside';
-import useScroll from './useScroll';
+import useScrollGallery from './useScrollGallery';
 import useScrollElement from './useScrollElement';
 import useThumbnailSize from './useThumbnailSize';
 import useWindowResize from './useWindowResize';
@@ -20,7 +20,7 @@ export {
   useImageSize,
   useKeyPress,
   useOnClickOutside,
-  useScroll,
+  useScrollGallery,
   useScrollElement,
   useThumbnailSize,
   useWindowResize,

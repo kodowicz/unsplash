@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { useScroll, useFetchSearched, useFetchPhotos } from '../../hooks/';
+import { useScrollGallery, useFetchSearched, useFetchPhotos } from '../../hooks/';
+import { PAGE } from '../../variables';
 import Photos from './photos/Photos';
 import Topics from './topics/Topics';
 import Form from '../search/form/Form';
 import styles from './gallery.module.scss';
 
 export default function Gallery() {
-  const PAGE = 2;
   const { id } = useParams();
-  const [ page, setPage ] = useState(PAGE);
+  const [ page, setPage ] = useState(0);
   const { initPhotos, topics } = useFetchSearched(id);
   const morePhotos = useFetchPhotos(id, page);
-  const bottomPos = useScroll();
+  const bottomPos = useScrollGallery();
 
   // I want to fetch data the same way unsplash.com does:
   // fetch related topics and first 20 photos at once,
@@ -25,7 +25,7 @@ export default function Gallery() {
     () => {
       setAllPhotos(oldPhotos => [...oldPhotos, ...morePhotos]);
     },
-    [page]
+    [morePhotos]
   );
 
   useEffect(
