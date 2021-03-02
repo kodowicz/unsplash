@@ -6,28 +6,68 @@
   position: relative;
 }
 
+.scroller {
+  width: 100%;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  &::after, &::before {
+    transition: opacity .2s ease-in-out;
+    opacity: 0;
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    z-index: 1;
+    width: 100px;
+  }
+}
+
+.backward_shadow::before {
+  left: 0;
+  background: linear-gradient(270deg, hsla(0,0%,100%,0) 0, #fff 95%, #fff);
+  opacity: 1;
+}
+
+.forward_shadow::after {
+  right: 0;
+  background: linear-gradient(90deg, hsla(0,0%,100%,0) 0, #fff 95%, #fff);
+  opacity: 1;
+}
+
 .topics {
   display: inline-flex;
 }
 
 .topic {
   width: 140px;
-  border-width: 1px;
   text-align: center;
-  border-color: #d1d1d1;
   text-transform: capitalize;
-  transition: border-color .1s ease-in-out;
-  border-radius: 5px;
-  border-style: solid;
   overflow: hidden;
   margin-left: 8px;
+  color: #767676;
+
+  a {
+    border: 1px solid #d1d1d1;
+    transition: border-color .1s ease-in-out;
+    border-radius: 5px;
+    display: block;
+
+    &:hover, &:focus {
+      color: #111;
+      border-color: currentColor;
+    }
+  }
 
   &:first-child {
     margin-left: 0;
-  }
-
-  &:hover {
-    border-color: #111;
   }
 }
 
@@ -40,22 +80,42 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  color: #767676;
+  color: currentColor;
   box-sizing: border-box;
   transition: color .1s ease-in-out;
+}
 
-  &:hover {
+.button {
+  color: #767676;
+  position: absolute;
+  padding: 0;
+  outline: none;
+  z-index: 2;
+  right: 0;
+  top: 0;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  fill: currentColor;
+  cursor: pointer;
+
+  &[hidden] {
+    display: none;
+  }
+
+  &:hover, &:focus {
     color: #111;
+  }
+
+  &[hidden]::before {
+    opacity: 0;
   }
 }
 
-
-.blur {
-  position: absolute;
-  background: #fff;
-  right: -2px;
-  top: 0;
-  width: 15px;
-  height: 100%;
-  box-shadow: -5px 0px 10px rgb(255,255,255);
+.backward_button {
+  left: 0;
+  transform: rotate(180deg);
 }

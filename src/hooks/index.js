@@ -7,6 +7,7 @@ import useImageSize from './useImageSize';
 import useKeyPress from './useKeyPress';
 import useOnClickOutside from './useOnClickOutside';
 import useScroll from './useScroll';
+import useScrollElement from './useScrollElement';
 import useThumbnailSize from './useThumbnailSize';
 import useWindowResize from './useWindowResize';
 
@@ -20,6 +21,7 @@ export {
   useKeyPress,
   useOnClickOutside,
   useScroll,
+  useScrollElement,
   useThumbnailSize,
   useWindowResize,
 }
