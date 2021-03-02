@@ -102,8 +102,8 @@ export default function Topics({ topics }) {
         ref={wrapperRef}
         className={`
           ${styles.scroller}
-          ${!backwardVisible && styles.backward_shadow}
-          ${!forwardVisible && styles.forward_shadow}
+          ${!backwardVisible && styles.scroller__backward_shadow}
+          ${!forwardVisible && styles.scroller__forward_shadow}
         `}
       >
         <div className={styles.topics}>

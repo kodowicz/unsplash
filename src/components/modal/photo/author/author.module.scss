@@ -3,7 +3,7 @@
   justify-content: space-between;
   padding: 0 16px;
 
-  @media(min-width: 768px) {
+  @media (min-width: 768px) {
     padding: 0;
   }
 }
@@ -22,20 +22,20 @@
   display: block;
 
   &:hover {
-    color: #111;
+    color: var(--black);
   }
 }
 
 .username {
+  color: var(--gray);
   font-size: 11px;
-  letter-spacing: .02em;
+  letter-spacing: 0.02em;
   line-height: 1.35;
   display: block;
-  color: #767676;
-  transition: color .1s ease-in-out;
+  transition: color 0.1s ease-in-out;
 
   &:hover {
-    color: #111;
+    color: var(--black);
   }
 }
 
@@ -46,11 +46,12 @@
 }
 
 .collection {
-  color: #767676;
-  background-color: #fff;
-  border: 1px solid #d1d1d1;
+  color: var(--gray);
+  background-color: var(--white);
+  border: 1px solid var(--border-gray);
+  padding-left: var(--margin);
+  padding-right: var(--margin);
   height: 32px;
-  padding: 0 11px;
   font-size: 14px;
   line-height: 30px;
   margin: 4px;
@@ -59,15 +60,15 @@
   display: flex;
   align-items: center;
   box-shadow: 0 1px 1px rgb(0 0 0 / 4%);
-  transition: all .1s ease-in-out;
+  transition: all 0.1s ease-in-out;
   text-align: center;
   -webkit-user-select: none;
   user-select: none;
   fill: currentColor;
 
   &:hover {
-    color: #111;
-    border-color: #767676;
+    color: var(--black);
+    border-color: var(--gray);
   }
 
   svg {
@@ -77,13 +78,13 @@
 }
 
 .collection_liked {
-  color: #fff;
-  background-color: #f15151;
-  border-color: #f15151;
+  color: var(--white);
+  background-color: var(--red);
+  border-color: var(--red);
 
   &:hover {
-    color: #fff;
-    background-color: #e04c4c;
-    border-color: #e04c4c;
+    color: var(--white);
+    background-color: var(--claret);
+    border-color: var(--claret);
   }
 }

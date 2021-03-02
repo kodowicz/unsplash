@@ -1,8 +1,31 @@
 :root {
+  --small-margin: 8px;
   --margin: 12px;
+  --big-margin: 24px;
   --columns-gap: 0;
+  --white: #fff;
+  --black: #111;
+  --gray: #767676;
+  --light-gray: #d8d8d8;
+  --border-gray: #d1d1d1;
+  --background-gray: #eee;
+  --hover-background-gray: #e1e1e1;
+  --red: #f15151;
+  --claret: #e04c4c;
+  --gradient-left-to-right: linear-gradient(
+    270deg,
+    hsla(0, 0%, 100%, 0) 0,
+    #fff 95%,
+    #fff
+  );
+  --gradient-right-to-left: linear-gradient(
+    90deg,
+    hsla(0, 0%, 100%, 0) 0,
+    #fff 95%,
+    #fff
+  );
 
-  @media(min-width: 768px) {
+  @media (min-width: 768px) {
     --columns-gap: 24px;
   }
 }

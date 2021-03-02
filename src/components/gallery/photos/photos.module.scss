@@ -3,7 +3,7 @@
   margin: var(--columns-gap);
   width: 100%;
 
-  @media(min-width: 768px) {
+  @media (min-width: 768px) {
     width: calc(100% - var(--columns-gap));
     max-width: 1320px;
     margin: 0 auto;
@@ -15,11 +15,15 @@
   list-style: none;
   box-sizing: content-box;
 
-  @media(min-width: 768px) {
+  @media (max-width: 767px) {
+    margin: 20px 0;
+  }
+
+  @media (min-width: 768px) {
     width: 50%;
   }
 
-  @media(min-width: 1000px) {
+  @media (min-width: 1000px) {
     width: 33.33%;
   }
 }

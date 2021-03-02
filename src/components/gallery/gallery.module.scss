@@ -1,5 +1,5 @@
 .topic_wrapper {
-  padding: 24px;
+  padding: var(--big-margin);
 
   @media (min-width: 768px) {
     max-width: 1296px;
@@ -14,13 +14,18 @@
   line-height: 1.25;
   font-weight: 700;
 
-  @media(min-width: 768px) {
+  @media (min-width: 768px) {
     font-size: 46px;
     line-height: 1.2;
   }
 }
 
 .gallery_search {
-  width: 50%;
+  width: 80%;
   margin: 0 auto;
+
+  @media (min-width: 768px) {
+    width: 50%;
+    max-width: 600px;
+  }
 }

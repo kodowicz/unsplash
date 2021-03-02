@@ -1,31 +1,35 @@
 .wrapper {
-  margin: 12px;
+  margin: 20px;
   display: flex;
   flex-wrap: wrap;
   overflow: hidden;
 
   div {
-    padding-right: 8px;
-    padding-bottom: 8px;
+    padding-right: var(--small-margin);
+    padding-bottom: var(--small-margin);
+  }
+
+  @media (min-width: 768px) {
+    margin: var(--margin);
   }
 }
 
 .tag {
-  background-color: #eee;
-  color: #767676;
-  padding-right: 8px;
-  padding-left: 8px;
+  background-color: var(--background-gray);
+  color: var(--gray);
+  padding-right: var(--small-margin);
+  padding-left: var(--small-margin);
   border-radius: 2px;
   text-decoration: none;
   font-size: 14px;
-  transition: all .1s ease-in-out;
+  transition: all 0.1s ease-in-out;
   text-transform: capitalize;
   line-height: 26px;
   display: inline-block;
   cursor: pointer;
 
   &:hover {
-    background-color: #e1e1e1;
-    color: #111;
+    background-color: var(--hover-background-gray);
+    color: var(--black);
   }
 }

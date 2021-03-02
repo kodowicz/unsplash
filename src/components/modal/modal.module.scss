@@ -1,5 +1,5 @@
 .modal {
-  background-color: rgba(0,0,0,.6);
+  background-color: rgba(0, 0, 0, 0.6);
   cursor: zoom-out;
   position: fixed;
   top: 0;
@@ -9,16 +9,16 @@
   z-index: 3;
   padding: 40px 0;
 
-  @media(min-width: 768px) {
-    padding: 32px 70px
+  @media (min-width: 768px) {
+    padding: 32px 70px;
   }
 }
 
 .close_button {
+  color: var(--white);
   border: none;
   background: none;
   position: fixed;
-  color: #fff;
   top: 8px;
   left: 8px;
   padding: 0;
@@ -29,8 +29,5 @@
   svg {
     width: 24px;
     height: 24px;
-  }
-
-  @media(min-width: 768px) {
   }
 }
