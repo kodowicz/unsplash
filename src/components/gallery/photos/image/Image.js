@@ -9,11 +9,43 @@ export default function Image({ photo }) {
   const figureRef = useRef();
   const size = useThumbnailSize(figureRef, photo);
 
+  const author = (
+    <div className={styles.author}>
+      <div>
+        <img
+          className={styles.thumbnail}
+          src={photo.user.profile_image.small}
+        />
+      </div>
+      <span className={styles.name}>{photo.user.name}</span>
+    </div>
+  );
+
+  const blurhash = (
+    <Blurhash
+      className={styles.blurhash}
+      hash={photo.blur_hash}
+      width={size?.width}
+      height={size?.height}
+    />
+  );
+
+  const image = (
+    <img
+      className={styles.image}
+      src={photo.urls.small}
+      title={photo.alt_description}
+      alt={photo.alt_description}
+    />
+  );
+
   return (
-    <Link to={{
-      pathname: `/photos/${photo.id}`,
-      state: { background: location }
-    }}>
+    <Link
+      to={{
+        pathname: `/photos/${photo.id}`,
+        state: { background: location }
+      }}
+    >
       <div
         ref={figureRef}
         className={styles.figure}
@@ -22,20 +54,9 @@ export default function Image({ photo }) {
           height: size?.height
         }}
       >
-        {(size && photo.blur_hash) &&
-          <Blurhash
-            className={styles.blurhash}
-            hash={photo.blur_hash}
-            width={size?.width}
-            height={size?.height}
-          />
-        }
-        <img
-          className={styles.image}
-          src={photo.urls.small}
-          title={photo.alt_description}
-          alt={photo.alt_description}
-        />
+        {author}
+        {size && photo.blur_hash && blurhash}
+        {image}
       </div>
     </Link>
   );
